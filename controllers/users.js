@@ -11,8 +11,6 @@ module.exports = {
 
 	// get one user
 	show: (req, res) => {
-		console.log("Current User:")
-		console.log(req.user)
 		User.findById(req.params.id, (err, user) => {
 			res.json(user)
 		})
@@ -21,7 +19,6 @@ module.exports = {
 	// create a new user
 	create: (req, res) => {
 		User.create(req.body, (err, user) => {
-			console.log(err)
 			if(err) return res.json({success: false, code: err.code})
 			// once user is created, generate a token to "log in":
 			const token = signToken(user)

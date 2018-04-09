@@ -14,6 +14,7 @@ module.exports = {
         })
     },
     create: (req, res) => {
+        const newSale = new Sale(req.body)
         newSale.create({... req.body, user: req.user._id }, (err, brandNewSale) => {
             if(err) return console.log(err)
             res.json({sucess: true, mesage: "Sale Created!"})

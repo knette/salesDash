@@ -23,6 +23,7 @@ app.get('/api', (req, res) => {
 })
 
 app.use('/api/users', usersRoutes)
+app.use('/api/sales', salesRoutes)
 
 app.use('*', (req, res) => {
 	res.sendFile(`${__dirname}/client/build/index.html`)

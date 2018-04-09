@@ -4,7 +4,7 @@ const
 		company: { type: String, required: true},
 		price: { type: Number, required: true },
         commission: { type: Number, required: true },
-        invoiceDate: { type: Number, required: true },
+        invoiceDate: { type: Date, required: true },
         return: { type: Boolean, default: false},
         user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
     })
