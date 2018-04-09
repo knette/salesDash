@@ -5,7 +5,8 @@ const
 		price: { type: Number, required: true },
         commission: { type: Number, required: true },
         invoiceDate: { type: Number, required: true },
-        return: { type: boolean, default: false}
+        return: { type: Boolean, default: false},
+        user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
     })
     
 const Sale = mongoose.model('Sale', saleSchema)

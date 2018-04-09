@@ -1,4 +1,4 @@
-# React Application with JWT Authentication
+# salesDash
 
 ### Overview
 

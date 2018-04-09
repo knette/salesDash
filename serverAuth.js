@@ -5,6 +5,8 @@ const
 
 // function for creating tokens
 function signToken(user) {
+	console.log(user)
+	console.log(process.env)
 	// toObject() returns a basic js object with only the info from the db
 	const userData = user.toObject()
 	delete userData.password
