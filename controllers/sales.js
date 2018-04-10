@@ -14,10 +14,10 @@ module.exports = {
         })
     },
     create: (req, res) => {
-        const newSale = new Sale(req.body)
-        newSale.create({... req.body, user: req.user._id }, (err, brandNewSale) => {
+        Sale.create(req.body, (err, brandNewSale) => {
             if(err) return console.log(err)
-            res.json({sucess: true, mesage: "Sale Created!"})
+            brandNewSale.user = req.user._id
+            res.json({sucess: true, mesage: "Sale Created!", brandNewSale})
         })
     },
     update: (req, res) => {

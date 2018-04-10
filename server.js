@@ -17,6 +17,7 @@ mongoose.connect(MONGODB_URI, (err) => {
 app.use(express.static(`${__dirname}/client/build`))
 app.use(logger('dev'))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/api', (req, res) => {
 	res.json({message: "API root."})

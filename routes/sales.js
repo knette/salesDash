@@ -1,10 +1,8 @@
 const 
     express = require('express'),
     salesRouter = new express.Router()
-    Sale = "a completed tweet model...",
     salesCtrl = require('../controllers/sales.js'),
     { verifyToken } = require('../serverAuth.js')
- 
 
 //index, show,
 salesRouter.route('/')
