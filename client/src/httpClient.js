@@ -60,6 +60,20 @@ httpClient.logOut = function() {
 httpClient.createSale = function(fields) {
 	return this({ method: 'post', url: '/api/sales', data: fields})
 }
+httpClient.getAllSales = function() {
+    return this({ method: 'get', url: '/api/sales'})
+}
+
+httpClient.getSale = function(id) {
+    return this({ method: 'get', url: `/api/sales/${id}`})
+}
+
+httpClient.deleteSale = function(id) {
+    return this({method: 'delete', url: `/api/sales/${id}`})
+}
+httpClient.updateSale = function(id, fields) {
+    return this({method: 'patch', url: `/api/sales/${id}`, data: fields})
+}
 
 
 
