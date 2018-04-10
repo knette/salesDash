@@ -4,13 +4,13 @@ const
     salesCtrl = require('../controllers/sales.js'),
     { verifyToken } = require('../serverAuth.js')
 
+    
+salesRouter.use(verifyToken)
+    
 //index, show,
 salesRouter.route('/')
     .get(salesCtrl.index)
     .post(salesCtrl.create)
-
-salesRouter.use(verifyToken)
-
 //create, update, destroy 
 
 salesRouter.route('/:id')

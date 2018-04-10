@@ -16,15 +16,12 @@ class NewSale extends React.Component {
 	}
 
 	onFormSubmit(evt) {
-		evt.preventDefault()
-		httpClient.signUp(this.state.fields).then(user => {
-			this.setState({ fields: { name: '', email: '', password: '' } })
-			if(user) {
-				this.props.onSignUpSuccess(user)
-				this.props.history.push('/')
-			}
-		})
-	}
+        evt.preventDefault()
+        httpClient.createSale(this.state.fields).then(serverResponse => {
+            console.log(serverResponse.data)
+        })
+        this.setState({ fields: { company: '', price: '', commission: '', invoiceDate: '', refund: ''} })
+}
 	
 	render() {
 		const { company, price, commission, invoiceDate, refund } = this.state.fields
@@ -34,11 +31,11 @@ class NewSale extends React.Component {
 					<div className='column column-33 column-offset-33'>
 						<h1>New Sale</h1>
 						<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-							<input type="text" placeholder="Name" name="name" value={name} />
-							<input type="text" placeholder="Email" name="email" value={email} />
-							<input type="password" placeholder="Password" name="password" value={password} />
-                            <input type="text" placeholder="Email" name="email" value={email} />
-							<input type="password" placeholder="Password" name="password" value={password} />
+							<input type="text" placeholder="Company" name="company" value={company} />
+							<input type="number" placeholder="Price" name="price" value={price} />
+							<input type="number" placeholder="Commission " name="commission" value={commission} />
+                            <input type="date" placeholder="Invoice Date" name="invoiceDate" value={invoiceDate} />
+							<input type="text" placeholder="refund" name="refund" value={refund} />
 							<button>Add Sale</button>
 						</form>
 					</div>

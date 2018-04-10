@@ -8,11 +8,14 @@ import LogOut from './views/LogOut'
 import SignUp from './views/SignUp'
 import Sales from './views/Sales'
 import Home from './views/Home'
+import NewSale from './views/NewSale'
+
 
 class App extends React.Component {
 	state = { currentUser: httpClient.getCurrentUser() }
 
 	onLoginSuccess(user) {
+		// console.log(token)
 		this.setState({ currentUser: httpClient.getCurrentUser() })
 	}
 
@@ -46,6 +49,11 @@ class App extends React.Component {
 					<Route path="/sales" render={() => {
 						return currentUser
 							? <Sales />
+							: <Redirect to="/login" />
+					}} />
+					<Route path="/newsale" render={() => {
+						return currentUser
+							? <NewSale />
 							: <Redirect to="/login" />
 					}} />
 
