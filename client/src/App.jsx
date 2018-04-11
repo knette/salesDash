@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import httpClient from './httpClient'
+import {Button } from 'reactstrap'
 
 import NavBar from './NavBar'
 import LogIn from './views/LogIn'
@@ -46,7 +47,7 @@ class App extends React.Component {
 						return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
 					}} />
 
-					<Route path="/sales" render={() => {
+					<Route path="/sales" render={(props) => {
 						return currentUser
 							? <Sales />
 							: <Redirect to="/login" />

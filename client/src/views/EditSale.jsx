@@ -1,7 +1,7 @@
 import React from 'react'
 import httpClient from '../httpClient'
 
-class NewSale extends React.Component {
+class EditSale extends React.Component {
 	state = {
 		fields: { company: '', price: '', commission: '', invoiceDate: '', refund: ''}
 	}
@@ -47,4 +47,4 @@ class NewSale extends React.Component {
 	}
 }
 
-export default NewSale
+export default EditSale
