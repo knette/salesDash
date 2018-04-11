@@ -6,7 +6,9 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, La
 class Sales extends React.Component { 
 	state= {
 		sales: [],
-		modalOpen: false
+		modalOpen: false,
+		sortBy: null,
+    	sortAscending: true
 	}
 	componentDidMount() {
 		httpClient.getAllSales().then((serverResponse) => {

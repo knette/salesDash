@@ -9,7 +9,7 @@ const NavBar = (props) => {
 				? (
 					<span>
 						<Link to="/logout">Log Out</Link>
-						<Link to="/sales">Your Sales</Link>
+						<Link to="/sales">All Sales</Link>
 						<Link to="/newsale">Add New Sale</Link>
 					</span>
 				)
