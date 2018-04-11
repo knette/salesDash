@@ -3,6 +3,17 @@ import httpClient from '../httpClient.js'
 import { Link } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap'
 
+const headings = [
+    {"field": "company", "label": "Company"},
+    {"field": "price", "label": "Sale Price"},
+    {"field": "commission", "label": "Commission %"},
+    {"field": "commission calculated", "label": "Commission $"},
+    {"field": "invoiceDate", "label": "Invoice Date"},
+    {"field": "bathrooms", "label": "Bathrooms"},
+    {"field": "floorType", "label": "Floors"},
+    {"field": "rent", "label": "Rent"}
+  ]
+
 class Sales extends React.Component { 
 	state= {
 		sales: [],
@@ -22,11 +33,19 @@ class Sales extends React.Component {
             modalOpen: true
         })
 	}
-	handleDeleteButton() {
-        httpClient.deleteSale(this.props.match.params.id).then((serverResponse) => {
-            this.props.history.push('/sales')
+	handleDeleteButton(id) {
+        httpClient.deleteSale(id).then((serverResponse) => {
+			// this.props.history.push('/sales')
+			console.log(serverResponse.data)
+			this.setState({
+				sales: this.state.sales.filter((s) => {
+					return s._id !== id
+				})
+			})
+
         })
 	}
+
 	handleEditFormSubmit(evt) {
         evt.preventDefault()
         const { company, price, commission, invoiceDate, refund } = this.refs
@@ -48,6 +67,18 @@ class Sales extends React.Component {
 
 	render (params) {
 		const { sales, modalOpen } = this.state
+		var returnCount = 0 
+		sales.forEach((s)=> {
+			if(s.refund) returnCount ++
+		})
+		var salePriceTotal = 0 
+		sales.forEach((s) => {
+			salePriceTotal = s.price + salePriceTotal 
+		})
+		var commissionTotal = 0 
+		sales.forEach((s) => {
+			commissionTotal = (s.commission*s.price) + commissionTotal
+		})
 		return (
 		<div className='Sales'>
 			<h1>Sales</h1>
@@ -73,13 +104,25 @@ class Sales extends React.Component {
                     <td>{(s.commission/100).toFixed(2)}</td>
 					<td>${(s.commission * s.price).toFixed(2)}</td>
                     <td>{(s.invoiceDate)}</td>
-                    <td>{s.refund}</td>
-					<th><Button onClick={this.handleDeleteButton.bind(this)} color="danger">Delete</Button></th>
-					<th><Button color="warning">Edit</Button></th>
+                    <td>{s.refund.toString()}</td>
+					<th><Button onClick={this.handleDeleteButton.bind(this, s._id)} color="danger">Delete</Button></th>
+					<th><Button color="warning" onClick={this.handleEditClick.bind(this)}>Edit</Button></th>
                     </tr>
                   )}) 
                 }
 				</tbody>
+				<tfoot>
+   					<tr>
+						<td>Totals</td>
+						<td>{salePriceTotal}</td>
+						<td>Totals</td>
+						<td>{commissionTotal.toFixed(2)}</td>
+						<td>Totals</td>
+						<td>{salePriceTotal}</td>
+						<td></td>
+						<td></td>
+    				</tr>
+				</tfoot>
 			</table>
 		<Modal isOpen={modalOpen}>
 			<ModalHeader>Edit Sale</ModalHeader>
@@ -91,7 +134,7 @@ class Sales extends React.Component {
 						</FormGroup>
 						<FormGroup>
 							<Label for="Price">Sale Price</Label>
-							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.imageURL} />
+							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
 						</FormGroup>
 				</ModalBody>
 			<ModalFooter>
@@ -100,6 +143,7 @@ class Sales extends React.Component {
 			</ModalFooter>
 			</Form>
 		</Modal>
+		<h1> Return Rate { ((returnCount/ sales.length) *100).toFixed(2)}% </h1>
 		</div>
 		)
 	}

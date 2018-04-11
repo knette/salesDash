@@ -2,10 +2,17 @@ const Sale = require('../models/Sale.js')
 
 module.exports = {
     index: (req, res) => {
-        Sale.find({}, (err, allDemSales) => {
-            if(err) return console.log(err)
-            res.json(allDemSales)
-        })
+        if(req.user.admin) {
+            Sale.find({}, (err, allDemSales) => {
+                if(err) return console.log(err)
+                res.json(allDemSales)
+            })
+        } else {
+            Sale.find({user: req.user}, (err, allDemSales) => {
+                if(err) return console.log(err)
+                res.json(allDemSales)
+            })
+        }
     },
     show: (req, res) => {
      Sale.findById(req.params.id, (err, thatSale) => {

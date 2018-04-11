@@ -20,7 +20,7 @@ class NewSale extends React.Component {
         httpClient.createSale(this.state.fields).then(serverResponse => {
             console.log(serverResponse.data)
             //redirect to your sales
-            this.props.history.push('/sales')
+            
         })
         this.setState({ fields: { company: '', price: '', commission: '', invoiceDate: '', refund: ''} })
 }
@@ -37,7 +37,7 @@ class NewSale extends React.Component {
 							<input type="number" placeholder="Price" name="price" value={price} />
 							<input type="number" placeholder="Commission " name="commission" value={commission} />
                             <input type="date" placeholder="Invoice Date" name="invoiceDate" value={invoiceDate} />
-							<input type="text" placeholder="refund" name="refund" value={refund} />
+							<input type="text" placeholder="Return?" name="refund" value={refund} />
 							<button>Add Sale</button>
 						</form>
 					</div>
