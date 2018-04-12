@@ -9,14 +9,15 @@ const headings = [
     {"field": "commission", "label": "Commission %"},
     {"field": "commission calculated", "label": "Commission $"},
     {"field": "invoiceDate", "label": "Invoice Date"},
-    {"field": "bathrooms", "label": "Bathrooms"},
-    {"field": "floorType", "label": "Floors"},
-    {"field": "rent", "label": "Rent"}
+    {"field": "refund", "label": "Return?"},
+    {"field": "delete", "label": "Delete"},
+    {"field": "edit", "label": "Edit"}
   ]
 
 class Sales extends React.Component { 
 	state= {
 		sales: [],
+		headings: [],
 		modalOpen: false,
 		sortBy: null,
     	sortAscending: true
@@ -66,7 +67,7 @@ class Sales extends React.Component {
     }
 
 	render (params) {
-		const { sales, modalOpen } = this.state
+		const { sales, modalOpen, headings } = this.state
 		var returnCount = 0 
 		sales.forEach((s)=> {
 			if(s.refund) returnCount ++
@@ -85,14 +86,10 @@ class Sales extends React.Component {
 			<table>
   				<thead>
 					<tr>
-					<th>Company</th>
-					<th>Sale Price</th>
-					<th>Commission %</th>
-					<th>Commission $</th>
-					<th>Invoice Date</th>
-					<th>Return?</th>
-					<th>Delete</th>
-					<th>Edit</th>
+					{headings.map((h, index) => {
+                  return <th key={index} onClick={this.handleHeadingClick.bind(this, h.field)}> <span> {h.label}</span></th>
+                }) 
+                }
 					</tr>
 				</thead>
 				<tbody>
@@ -101,12 +98,12 @@ class Sales extends React.Component {
                   <tr key={s._id}>
                     <td>{s.company}</td> 
                     <td>${s.price}</td>
-                    <td>{(s.commission/100).toFixed(2)}</td>
+                    <td>{(s.commission*100)}%</td>
 					<td>${(s.commission * s.price).toFixed(2)}</td>
                     <td>{(s.invoiceDate)}</td>
                     <td>{s.refund.toString()}</td>
 					<th><Button onClick={this.handleDeleteButton.bind(this, s._id)} color="danger">Delete</Button></th>
-					<th><Button color="warning" onClick={this.handleEditClick.bind(this)}>Edit</Button></th>
+					<th><Button color="warning" onclick="return confirm('Are you sure you want to delete?');" onClick={this.handleEditClick.bind(this)}>Edit</Button></th>
                     </tr>
                   )}) 
                 }
@@ -114,11 +111,11 @@ class Sales extends React.Component {
 				<tfoot>
    					<tr>
 						<td>Totals</td>
-						<td>{salePriceTotal}</td>
+						<td>${salePriceTotal}</td>
 						<td>Totals</td>
-						<td>{commissionTotal.toFixed(2)}</td>
+						<td>${commissionTotal.toFixed(2)}</td>
 						<td>Totals</td>
-						<td>{salePriceTotal}</td>
+						<td>{ ((returnCount/ sales.length) *100).toFixed(2)}% </td>
 						<td></td>
 						<td></td>
     				</tr>
@@ -136,6 +133,18 @@ class Sales extends React.Component {
 							<Label for="Price">Sale Price</Label>
 							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
 						</FormGroup>
+						<FormGroup>
+							<Label for="Price">Sale Price</Label>
+							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
+						</FormGroup>
+						<FormGroup>
+							<Label for="Price">Sale Price</Label>
+							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
+						</FormGroup>
+						<FormGroup>
+							<Label for="Price">Sale Price</Label>
+							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
+						</FormGroup>
 				</ModalBody>
 			<ModalFooter>
 				<Button type="submit" color="info">Update</Button>
@@ -143,7 +152,6 @@ class Sales extends React.Component {
 			</ModalFooter>
 			</Form>
 		</Modal>
-		<h1> Return Rate { ((returnCount/ sales.length) *100).toFixed(2)}% </h1>
 		</div>
 		)
 	}
