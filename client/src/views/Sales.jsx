@@ -1,6 +1,5 @@
 import React from 'react'
 import httpClient from '../httpClient.js'
-import { Link } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap'
 
 const headings = [
@@ -16,12 +15,16 @@ const headings = [
 
 class Sales extends React.Component { 
 	state= {
+		filter: '',
 		sales: [],
-		headings: [],
+		headings: headings,
 		modalOpen: false,
 		sortBy: null,
     	sortAscending: true
 	}
+	handleFilterChange(evt) {
+		this.setState({ filter: evt.target.value })
+	  }
 	componentDidMount() {
 		httpClient.getAllSales().then((serverResponse) => {
 			this.setState({
@@ -64,10 +67,32 @@ class Sales extends React.Component {
                 sale: serverResponse.data
             })
         })
-    }
+	}
+	handleHeadingClick(field) {
+		console.log(field)
+		const { sortAscending, sortBy } = this.state 
+		const newSortAscending = sortBy === field ? !sortAscending : true 
+		this.setState({
+		  sortBy: field, 
+		  sortAscending: newSortAscending
+		})
+	  }
+	  sortedSales() {
+		const {sales, sortBy, sortAscending} = this.state
+		return [...sales].sort((a, b) => {
+		  if(a[sortBy] < b[sortBy] && sortAscending)  return -1 
+		  if(a[sortBy] > b[sortBy] && !sortAscending) return -1 
+		  if(a[sortBy] > b[sortBy] && sortAscending)  return 1 
+		  if(a[sortBy] < b[sortBy] && !sortAscending) return 1 
+		  return 0
+		})
+	  }
 
 	render (params) {
 		const { sales, modalOpen, headings } = this.state
+		const filteredSales = sales.filter((s) => {
+			return s.company.toLowerCase().includes(this.state.filter.toLowerCase())
+		  })
 		var returnCount = 0 
 		sales.forEach((s)=> {
 			if(s.refund) returnCount ++
@@ -83,6 +108,7 @@ class Sales extends React.Component {
 		return (
 		<div className='Sales'>
 			<h1>Sales</h1>
+			<input onChange={this.handleFilterChange.bind(this)} className="input is-large" type="text" placeholder="Filter The Sales" />
 			<table>
   				<thead>
 					<tr>
@@ -93,7 +119,7 @@ class Sales extends React.Component {
 					</tr>
 				</thead>
 				<tbody>
-					{sales.map((s) => {
+					{filteredSales.map((s) => {
                   return (
                   <tr key={s._id}>
                     <td>{s.company}</td> 
@@ -103,7 +129,7 @@ class Sales extends React.Component {
                     <td>{(s.invoiceDate)}</td>
                     <td>{s.refund.toString()}</td>
 					<th><Button onClick={this.handleDeleteButton.bind(this, s._id)} color="danger">Delete</Button></th>
-					<th><Button color="warning" onclick="return confirm('Are you sure you want to delete?');" onClick={this.handleEditClick.bind(this)}>Edit</Button></th>
+					<th><Button color="warning" onClick={this.handleEditClick.bind(this)}>Edit</Button></th>
                     </tr>
                   )}) 
                 }
@@ -112,7 +138,7 @@ class Sales extends React.Component {
    					<tr>
 						<td>Totals</td>
 						<td>${salePriceTotal}</td>
-						<td>Totals</td>
+						<td>{((commissionTotal/salePriceTotal)*100.).toFixed(2)}%</td>
 						<td>${commissionTotal.toFixed(2)}</td>
 						<td>Totals</td>
 						<td>{ ((returnCount/ sales.length) *100).toFixed(2)}% </td>
@@ -126,29 +152,32 @@ class Sales extends React.Component {
 			<Form onSubmit={this.handleEditFormSubmit.bind(this)}>
 					<ModalBody>
 						<FormGroup>
-							<Label for="name">Company</Label>
-							<Input ref="Company" innerRef="company" type="text" id="company" defaultValue={sales.company}/>
+							<Label for="company">Company</Label>
+							<Input ref="company" innerRef="company" type="text" id="company" defaultValue={sales.company}/>
 						</FormGroup>
 						<FormGroup>
-							<Label for="Price">Sale Price</Label>
-							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
+							<Label for="price">Sale Price</Label>
+							<Input ref="price" innerRef="price" type="number" id="price" defaultValue={sales.price} />
 						</FormGroup>
 						<FormGroup>
-							<Label for="Price">Sale Price</Label>
-							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
+							<Label for="commission">Commission</Label>
+							<Input ref="commission" innerRef="commission" type="number" id="commission" defaultValue={sales.commission} />
 						</FormGroup>
 						<FormGroup>
-							<Label for="Price">Sale Price</Label>
-							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
+							<Label for="invoiceDate">Invoice Date</Label>
+							<Input ref="invoiceDate" innerRef="invoiceDate" type="date" id="invoiceDate" defaultValue={sales.invoiceDate} />
 						</FormGroup>
 						<FormGroup>
-							<Label for="Price">Sale Price</Label>
-							<Input ref="price" innerRef="price" type="nummber" id="price" defaultValue={sales.price} />
+						<Label for="refund">Return</Label>
+          					<Input type="select" name="refund" innerRef="refund" id="refund" defaultValue={sales.refund}>
+								<option>true</option>
+								<option>false</option>
+							</Input>
 						</FormGroup>
 				</ModalBody>
 			<ModalFooter>
 				<Button type="submit" color="info">Update</Button>
-				<Button type="button" color="danger" onClick={this.handleDeleteButton.bind(this)}>Delete</Button>
+				{/* <Button type="button" color="danger" onClick={this.handleDeleteButton.bind(this)}>Delete</Button> */}
 			</ModalFooter>
 			</Form>
 		</Modal>
