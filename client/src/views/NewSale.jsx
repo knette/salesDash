@@ -1,5 +1,6 @@
 import React from 'react'
 import httpClient from '../httpClient'
+import { Select, FormGroup, Label, Input } from 'reactstrap'
 
 class NewSale extends React.Component {
 	state = {
@@ -36,8 +37,17 @@ class NewSale extends React.Component {
 							<input type="text" placeholder="Company" name="company" value={company} />
 							<input type="number" placeholder="Price" name="price" value={price} />
 							<input type="number" placeholder="Commission " name="commission" value={commission} />
-                            <input type="date" placeholder="Invoice Date" name="invoiceDate" value={invoiceDate} />
-							<input type="text" placeholder="Return?" name="refund" value={refund} />
+                            <FormGroup>
+                                <Label for="invoiceDate">Invoice Date</Label>
+                                <Input type="date" name="invoiceDate" id="exampleDate" placeholder="date" value={invoiceDate} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="refund">Return?</Label>
+                                <Input type="select" name="refund" value={refund} placeholder="Return?">
+                                    <option>true</option>
+                                    <option>false</option>
+                                </Input>
+                            </FormGroup>
 							<button>Add Sale</button>
 						</form>
 					</div>

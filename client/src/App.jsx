@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import httpClient from './httpClient'
-
 import NavBar from './NavBar'
 import LogIn from './views/LogIn'
 import LogOut from './views/LogOut'
@@ -9,7 +8,6 @@ import SignUp from './views/SignUp'
 import Sales from './views/Sales'
 import Home from './views/Home'
 import NewSale from './views/NewSale'
-
 
 class App extends React.Component {
 	state = { currentUser: httpClient.getCurrentUser() }

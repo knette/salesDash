@@ -14,7 +14,6 @@ class LogIn extends React.Component {
 			}
 		})
 	}
-
 	onFormSubmit(evt) {
 		evt.preventDefault()
 		httpClient.logIn(this.state.fields).then(user => {
@@ -25,7 +24,6 @@ class LogIn extends React.Component {
 			}
 		})
 	}
-	
 	render() {
 		const { email, password } = this.state.fields
 		return (
