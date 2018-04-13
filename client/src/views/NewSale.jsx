@@ -1,6 +1,6 @@
 import React from 'react'
 import httpClient from '../httpClient'
-import { Select, FormGroup, Label, Input } from 'reactstrap'
+import { FormGroup, Label, Input } from 'reactstrap'
 
 class NewSale extends React.Component {
 	state = {

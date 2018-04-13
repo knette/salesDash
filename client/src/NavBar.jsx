@@ -1,18 +1,6 @@
 import React from 'react'
 import { NavLink as RouterNavLink } from 'react-router-dom'
-// import {Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
-import {
-	Collapse,
-	Navbar,
-	NavbarToggler,
-	NavbarBrand,
-	Nav,
-	NavItem,
-	NavLink,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 class NavBar extends React.Component {
 	constructor(props) {
