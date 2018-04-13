@@ -56,9 +56,9 @@ class App extends React.Component {
 							? <Sales />
 							: <Redirect to="/login" />
 					}} />
-					<Route path="/newsale" render={() => {
+					<Route path="/newsale" render={(props) => {
 						return currentUser
-							? <NewSale />
+							? <NewSale {...props}/>
 							: <Redirect to="/login" />
 					}} />
 					<Route path="/charts" render={(props) => {

@@ -1,4 +1,4 @@
-.app-container {
+body {
     background: url('./images/287.jpg')  no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -6,7 +6,11 @@
 	background-size: cover;
 	font-family: 'Imprima', sans-serif;
 }
-
+#app-container{
+	background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.89
+}
 MainContainer {
 	flex: 1;
 	justify-content: center;

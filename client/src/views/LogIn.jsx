@@ -2,7 +2,6 @@ import React from 'react'
 import httpClient from '../httpClient'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-
 class LogIn extends React.Component {
 	state = {
 		fields: { email: '', password: ''}

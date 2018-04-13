@@ -19,10 +19,10 @@ class NewSale extends React.Component {
         httpClient.createSale(this.state.fields).then(serverResponse => {
             console.log(serverResponse.data)
             //redirect to your sales
-            this.refs.history.push('/sales')
-            
+            //this.props.history.push('/sales')
+            // this.setState({ fields: { company: '', price: '', commission: '', invoiceDate: '', refund: ''} })
         })
-        this.setState({ fields: { company: '', price: '', commission: '', invoiceDate: '', refund: ''} })
+        
         
 }
 	render() {

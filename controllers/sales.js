@@ -21,6 +21,7 @@ module.exports = {
         })
     },
     create: (req, res) => {
+        req.body.refund = Boolean(req.body.refund)
         Sale.create(req.body, (err, brandNewSale) => {
             if(err) return console.log(err)
             brandNewSale.user = req.user._id
