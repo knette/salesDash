@@ -1,12 +1,11 @@
 import React from 'react'
 import httpClient from '../httpClient'
-import { FormGroup, Label, Input } from 'reactstrap'
+import { FormGroup, Label, Input, Form, Button, FormText } from 'reactstrap'
 
 class NewSale extends React.Component {
 	state = {
 		fields: { company: '', price: '', commission: '', invoiceDate: '', refund: ''}
 	}
-
 	onInputChange(evt) {
 		this.setState({
 			fields: {
@@ -15,7 +14,6 @@ class NewSale extends React.Component {
 			}
 		})
 	}
-
 	onFormSubmit(evt) {
         evt.preventDefault()
         httpClient.createSale(this.state.fields).then(serverResponse => {
@@ -25,18 +23,24 @@ class NewSale extends React.Component {
         })
         this.setState({ fields: { company: '', price: '', commission: '', invoiceDate: '', refund: ''} })
 }
-	
 	render() {
 		const { company, price, commission, invoiceDate, refund } = this.state.fields
 		return (
 			<div className='NewSale'>
-				<div className='row'>
-					<div className='column column-33 column-offset-33'>
 						<h1>New Sale</h1>
-						<form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
-							<input type="text" placeholder="Company" name="company" value={company} />
-							<input type="number" placeholder="Price" name="price" value={price} />
-							<input type="number" placeholder="Commission " name="commission" value={commission} />
+						<Form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                            <FormGroup>
+                                <Label for="Company">Company</Label>
+                                <Input type="text" placeholder="Company" name="company" value={company}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="price">Sales Price</Label>
+                                <Input type="number" placeholder="Price" name="price" value={price}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="price">Sales Price</Label>
+                                <Input type="number" placeholder="Commission " name="commission" value={commission}/>
+                            </FormGroup>
                             <FormGroup>
                                 <Label for="invoiceDate">Invoice Date</Label>
                                 <Input type="date" name="invoiceDate" id="exampleDate" placeholder="date" value={invoiceDate} />
@@ -48,10 +52,8 @@ class NewSale extends React.Component {
                                     <option>false</option>
                                 </Input>
                             </FormGroup>
-							<button>Add Sale</button>
-						</form>
-					</div>
-				</div>
+							<Button>Add Sale</Button>
+						</Form>
 			</div>
 		)
 	}

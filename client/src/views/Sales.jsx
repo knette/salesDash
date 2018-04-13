@@ -198,6 +198,7 @@ class Sales extends React.Component {
 							<FormGroup>
 								{console.log(saleBeingEdited.invoiceDate.slice(0, 10))}
 								<Label for="commission">Commission</Label>
+								<FormText>Format as decimal. Ex: 0.05 for 5% commission</FormText>
 								<Input ref="commission" innerRef="commission" type="number" step="any" id="commission" defaultValue={saleBeingEdited.commission} />
 							</FormGroup>
 							<FormGroup>
@@ -206,6 +207,7 @@ class Sales extends React.Component {
 							</FormGroup>
 							<FormGroup>
 							<Label for="refund">Return</Label>
+							<FormText>Are you submitting data for a return vs a sale?</FormText>
 								<Input type="select" name="refund" ref="refund" innerRef="refund" id="refund" defaultValue={saleBeingEdited.refund}>
 									<option>true</option>
 									<option>false</option>
