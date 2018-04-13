@@ -42,12 +42,14 @@ class NewSale extends React.Component {
                                 <Input type="number" placeholder="Commission " name="commission" value={commission}/>
                             </FormGroup>
                             <FormGroup>
+                                <FormText>Format as decimal. Ex: 0.05 for 5% commission</FormText>
                                 <Label for="invoiceDate">Invoice Date</Label>
                                 <Input type="date" name="invoiceDate" id="exampleDate" placeholder="date" value={invoiceDate} />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="refund">Return?</Label>
-                                <Input type="select" name="refund" value={refund} placeholder="Return?">
+                                    <FormText>Are you submitting data for a return vs a sale?</FormText>
+                                    <Input type="select" name="refund" value={refund} placeholder="Return?">
                                     <option>true</option>
                                     <option>false</option>
                                 </Input>

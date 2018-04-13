@@ -1,6 +1,6 @@
 import React from 'react'
 import httpClient from '../httpClient.js'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, Table } from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, Table, FormText } from 'reactstrap'
 
 const headings = [
     {"field": "company", "label": "Company"},
