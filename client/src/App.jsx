@@ -8,6 +8,7 @@ import SignUp from './views/SignUp'
 import Sales from './views/Sales'
 import Home from './views/Home'
 import NewSale from './views/NewSale'
+import Chart from './views/Chart'
 
 class App extends React.Component {
 	state = { currentUser: httpClient.getCurrentUser() }
@@ -58,6 +59,11 @@ class App extends React.Component {
 					<Route path="/newsale" render={() => {
 						return currentUser
 							? <NewSale />
+							: <Redirect to="/login" />
+					}} />
+					<Route path="/charts" render={(props) => {
+						return currentUser
+							? <Chart />
 							: <Redirect to="/login" />
 					}} />
 
