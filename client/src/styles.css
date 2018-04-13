@@ -7,6 +7,9 @@
 	margin-bottom: 20px
 }
 
-.nav-div {
-	display: flex; 
+@media only screen and (min-width: 770px) {
+	.nav-div {
+		display: flex; 
+	}
 }
+
