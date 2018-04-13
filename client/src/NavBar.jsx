@@ -43,59 +43,27 @@ class NavBar extends React.Component {
               <NavItem>
                 <NavLink tag={RouterNavLink} to="/sales/">All Sales</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag= {RouterNavLink}to="/logout">LogOut</NavLink>
-              </NavItem>
 							<NavItem>
                 <NavLink tag= {RouterNavLink}to="/newsale">Add New Sale</NavLink>
+              </NavItem>
+							<NavItem>
+                <NavLink tag= {RouterNavLink}to="/logout">LogOut</NavLink>
               </NavItem>
 			  </div>
 					)
 					: (
-						<span>
+						<div className="nav-div">
 				<NavItem>
-                <NavLink tag={RouterNavLink} to="/sales/">Components</NavLink>
+                <NavLink tag={RouterNavLink} to="/login">Login</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink tag={RouterNavLink} to="/signup">Sign Up</NavLink>
               </NavItem>
-			  </span>
+			  </div>
 					)}
             </Nav>
           </Collapse>
         </Navbar>
-	
-	
-				{/* <Navbar color="light" light expand='md'>
-				<NavbarBrand href="/sales">salesDash</NavbarBrand>
-					<Nav className="ml-auto" navbar>
-				{props.currentUser
-					? (
-						<span>
-							<NavItem>
-							<NavLink to="/logout">Log Out</NavLink>
-							</NavItem>
-							<NavItem>
-							<NavLink to="/sales">All Sales</NavLink>
-							</NavItem>
-							<NavItem>
-							<NavLink to="/newsale">Add New Sale</NavLink>
-							</NavItem>
-							</span>
-					)
-					: (
-					<span>
-							<NavItem>
-							<NavLink to="/login">Log In</NavLink>
-							<NavItem>
-							</NavItem>
-							<NavLink to="/signup">Sign Up</NavLink>
-							</NavItem>
-						</span>
-					)
-				}
-					</Nav>
-				</Navbar> */}
 			</div>
 		)
 	}

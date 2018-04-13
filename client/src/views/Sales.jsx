@@ -143,7 +143,7 @@ class Sales extends React.Component {
 		return (
 		<div className='Sales'>
 			<h1>Sales</h1>
-			<input onChange={this.handleFilterChange.bind(this)} className="input is-large" type="text" placeholder="Filter The Companies" />
+			<Input onChange={this.handleFilterChange.bind(this)} className="input is-large" type="text" placeholder="Filter The Companies" />
 			<Table hover>
   				<thead>
 					<tr>
