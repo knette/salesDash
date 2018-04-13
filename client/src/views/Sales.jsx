@@ -2,7 +2,6 @@ import React from 'react'
 import httpClient from '../httpClient.js'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap'
 
-
 const headings = [
     {"field": "company", "label": "Company"},
     {"field": "price", "label": "Sale Price"},
@@ -38,9 +37,7 @@ class Sales extends React.Component {
 		const saleToEdit = this.state.sales.find((s) => {
 			return s._id === id
 		})
-
 		console.log(saleToEdit)
-
         this.setState({
 			modalOpen: true,
 			saleBeingEdited: saleToEdit
@@ -67,6 +64,7 @@ class Sales extends React.Component {
 
 	handleEditFormSubmit(evt) {
         evt.preventDefault()
+		const { saleBeingEdited, sales } = this.state
         const { company, price, commission, invoiceDate, refund } = this.refs
         const saleFormFields = {
             company: company.refs.company.value,
@@ -74,13 +72,24 @@ class Sales extends React.Component {
 			commission: commission.refs.commission.value,
 			invoiceDate: invoiceDate.refs.invoiceDate.value,
 			refund: refund.refs.refund.value
-        }
-        httpClient.updateSale(this.props.match.params.id, saleFormFields).then((serverResponse) => {
+		}
+		console.log(saleFormFields)
+        httpClient.updateSale(saleBeingEdited._id, saleFormFields).then((serverResponse) => {
             console.log(serverResponse.data)
-            this.setState({
+			const saleIndex = sales.findIndex((s) => {
+				return s._id === saleBeingEdited._id
+			})
+
+			console.log(saleIndex)
+			
+			this.setState({
 				modalOpen: false,
-				saleBeingEdited: null
-                // sale: serverResponse.data
+				saleBeingEdited: null,
+                sales: [
+					...sales.slice(0, saleIndex),
+					serverResponse.data,
+					...sales.slice(saleIndex + 1)
+				]
             })
         })
 	}
@@ -109,8 +118,7 @@ class Sales extends React.Component {
 		var year = dateObj.getFullYear()
 		var month = dateObj.getMonth() + 1
 		var day = dateObj.getDate()
-
-		return `${month}/${day}/${year}`
+		return `${year}-${month}-${day}`
 	}
 
 	render (params) {
@@ -153,7 +161,7 @@ class Sales extends React.Component {
                     <td>${s.price}</td>
                     <td>{(s.commission*100)}%</td>
 					<td>${(s.commission * s.price).toFixed(2)}</td>
-                    <td>{(s.invoiceDate)}</td>
+                    <td>{this.formatDate(s.invoiceDate)}</td>
                     <td>{s.refund.toString()}</td>
 					<th><Button onClick={this.handleDeleteButton.bind(this, s._id)} color="danger">Delete</Button></th>
 					<th><Button color="warning" onClick={this.handleEditClick.bind(this, s._id)}>Edit</Button></th>
@@ -185,19 +193,20 @@ class Sales extends React.Component {
 							</FormGroup>
 							<FormGroup>
 								<Label for="price">Sale Price</Label>
-								<Input ref="price" innerRef="price" type="number" id="price" defaultValue={saleBeingEdited.price} />
+								<Input ref="price" innerRef="price" type="number" step="any" id="price" defaultValue={saleBeingEdited.price} />
 							</FormGroup>
 							<FormGroup>
+								{console.log(this.formatDate(saleBeingEdited.invoiceDate))}
 								<Label for="commission">Commission</Label>
-								<Input ref="commission" innerRef="commission" type="number" id="commission" defaultValue={saleBeingEdited.commission} />
+								<Input ref="commission" innerRef="commission" type="number" step="any" id="commission" defaultValue={saleBeingEdited.commission} />
 							</FormGroup>
 							<FormGroup>
 								<Label for="invoiceDate">Invoice Date</Label>
-								<Input ref="invoiceDate" innerRef="invoiceDate" type="date" id="invoiceDate" defaultValue={this.formatDate(saleBeingEdited.invoiceDate)} />
+								<Input ref="invoiceDate" innerRef="invoiceDate" type="date" id="invoiceDate" defaultValue={saleBeingEdited.invoiceDate.slice(0, 10)} />
 							</FormGroup>
 							<FormGroup>
 							<Label for="refund">Return</Label>
-								<Input type="select" name="refund" innerRef="refund" id="refund" defaultValue={saleBeingEdited.refund}>
+								<Input type="select" name="refund" ref="refund" innerRef="refund" id="refund" defaultValue={saleBeingEdited.refund}>
 									<option>true</option>
 									<option>false</option>
 								</Input>

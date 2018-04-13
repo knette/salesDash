@@ -55,7 +55,7 @@ class App extends React.Component {
 							: <Redirect to="/login" />
 					}} />
 
-					<Route path="/" component={Home} />
+					<Route path="/" component={Sales} />
 
 				</Switch>
 			</div>

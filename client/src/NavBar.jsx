@@ -33,33 +33,32 @@ class NavBar extends React.Component {
 			<div className='NavBar'>
 	
 	<Navbar color="light" light expand="md">
-          <NavbarBrand>reactstrap</NavbarBrand>
+          <NavbarBrand>salesDash</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+			{/* {props.currentUser
+					? ( */}
+						<span>
               <NavItem>
-                <NavLink tag={RouterNavLink} to="/components/">Components</NavLink>
+                <NavLink tag={RouterNavLink} to="/sales/">Components</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag= {RouterNavLink}to="/logout">LogOut</NavLink>
+              </NavItem>
+			  </span>
+					{/* )
+					: ( */}
+						<span>
+				<NavItem>
+                <NavLink tag={RouterNavLink} to="/sales/">Components</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+			  </span>
+					{/* )
+			} */}
             </Nav>
           </Collapse>
         </Navbar>

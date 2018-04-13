@@ -36,7 +36,7 @@ module.exports = {
          sale.return = req.body.return
          sale.user = req.user._id
          sale.save((err, updatedSale) => {
-             if(err) return err
+             if(err) return console.log(err)
              res.json(updatedSale)
          })
         })
