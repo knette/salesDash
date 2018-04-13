@@ -37,18 +37,21 @@ class NavBar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-			{/* {props.currentUser
-					? ( */}
-						<span>
+			{this.props.currentUser
+					? (
+						<div className="nav-div">
               <NavItem>
-                <NavLink tag={RouterNavLink} to="/sales/">Components</NavLink>
+                <NavLink tag={RouterNavLink} to="/sales/">All Sales</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag= {RouterNavLink}to="/logout">LogOut</NavLink>
               </NavItem>
-			  </span>
-					{/* )
-					: ( */}
+							<NavItem>
+                <NavLink tag= {RouterNavLink}to="/newsale">Add New Sale</NavLink>
+              </NavItem>
+			  </div>
+					)
+					: (
 						<span>
 				<NavItem>
                 <NavLink tag={RouterNavLink} to="/sales/">Components</NavLink>
@@ -57,8 +60,7 @@ class NavBar extends React.Component {
                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
               </NavItem>
 			  </span>
-					{/* )
-			} */}
+					)}
             </Nav>
           </Collapse>
         </Navbar>

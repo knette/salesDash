@@ -1,6 +1,6 @@
 import React from 'react'
 import httpClient from '../httpClient.js'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, Table } from 'reactstrap'
 
 const headings = [
     {"field": "company", "label": "Company"},
@@ -144,7 +144,7 @@ class Sales extends React.Component {
 		<div className='Sales'>
 			<h1>Sales</h1>
 			<input onChange={this.handleFilterChange.bind(this)} className="input is-large" type="text" placeholder="Filter The Companies" />
-			<table>
+			<Table hover>
   				<thead>
 					<tr>
 					{headings.map((h, index) => {
@@ -181,7 +181,7 @@ class Sales extends React.Component {
 						<td></td>
     				</tr>
 				</tfoot>
-			</table>
+			</Table>
 		<Modal isOpen={modalOpen}>
 			<ModalHeader>Edit Sale</ModalHeader>
 			{saleBeingEdited && (
@@ -196,7 +196,7 @@ class Sales extends React.Component {
 								<Input ref="price" innerRef="price" type="number" step="any" id="price" defaultValue={saleBeingEdited.price} />
 							</FormGroup>
 							<FormGroup>
-								{console.log(this.formatDate(saleBeingEdited.invoiceDate))}
+								{console.log(saleBeingEdited.invoiceDate.slice(0, 10))}
 								<Label for="commission">Commission</Label>
 								<Input ref="commission" innerRef="commission" type="number" step="any" id="commission" defaultValue={saleBeingEdited.commission} />
 							</FormGroup>
