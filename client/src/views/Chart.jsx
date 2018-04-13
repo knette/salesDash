@@ -37,7 +37,7 @@ import httpClient from '../httpClient'
                             data={this.state.sales}
                             oAccessor={"name"}
                             rAccessor={d => d.value}
-                            style={{ fill: "#00a2ce", stroke: "white" }}
+                            style={{ fill: "#41848F", stroke: "white" }}
                             type={"bar"}
                             oLabel={d => (
                             <text transform="translate(-15,0)rotate(45)">{d}</text>

@@ -27,13 +27,6 @@ class App extends React.Component {
 		const { currentUser } = this.state
 		return (
 			<div className='App container' id="app-container">
-
-				{/* <Image
-          			style={{flex: 1,
-						width: null,
-						height: null,}}
-         		 	source={{uri: './images/287.jpg'}}
-        		/> */}
 				<NavBar currentUser={currentUser} />
 
 				<Switch>

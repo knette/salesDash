@@ -32,6 +32,9 @@ class NavBar extends React.Component {
                 <NavLink tag={RouterNavLink} to="/sales/">All Sales</NavLink>
               </NavItem>
 							<NavItem>
+                <NavLink tag= {RouterNavLink}to="/charts">Charts</NavLink>
+              </NavItem>
+							<NavItem>
                 <NavLink tag= {RouterNavLink}to="/newsale">Add New Sale</NavLink>
               </NavItem>
 							<NavItem>

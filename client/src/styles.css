@@ -8,8 +8,9 @@ body {
 }
 #app-container{
 	background-color: #ffffff;
-    border: 1px solid black;
-    opacity: 0.89
+    border: 1px solid #97C0B7;
+	opacity: 0.94;
+	padding-top: 25px;
 }
 MainContainer {
 	flex: 1;
@@ -35,4 +36,11 @@ MainContainer {
 }
 .nav-brand{
 	font-family: 'Cutive Mono', monospace;
+}
+::selection{
+    background-color: #97C0B7;
+}
+
+form{
+	padding-bottom: 25px;
 }

@@ -9,7 +9,7 @@ const Home = (props) => {
         <h1 className="display-3">salesDash is here to help</h1>
         <p className="lead">Reconciling invoices is hard AF. Submit your sales and returns here and have all the work done for you. </p>
         <hr className="my-2" />
-        <p>Coming soon: custom commission reporting and API integration with Costco, Walmart, Overstock and more!</p>
+        <p>Coming soon: custom commission calculations, csv uploading and API integration with Costco, Walmart, Overstock and more!</p>
         <p className="lead">
 		<Link to='/signup'>
           <Button outline color="primary">Sign Up</Button>
