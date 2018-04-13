@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import httpClient from './httpClient'
 import NavBar from './NavBar'
@@ -25,7 +25,7 @@ class App extends React.Component {
 	render() {
 		const { currentUser } = this.state
 		return (
-			<div className='App container'>
+			<div className='App container' id="app-container">
 
 				<NavBar currentUser={currentUser} />
 

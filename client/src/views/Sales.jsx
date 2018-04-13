@@ -163,8 +163,8 @@ class Sales extends React.Component {
 					<td>${(s.commission * s.price).toFixed(2)}</td>
                     <td>{this.formatDate(s.invoiceDate)}</td>
                     <td>{s.refund.toString()}</td>
-					<th><Button onClick={this.handleDeleteButton.bind(this, s._id)} color="danger">Delete</Button></th>
-					<th><Button color="warning" onClick={this.handleEditClick.bind(this, s._id)}>Edit</Button></th>
+					<th><Button onClick={this.handleDeleteButton.bind(this, s._id)} outline color="danger">Delete</Button></th>
+					<th><Button outline color="info" onClick={this.handleEditClick.bind(this, s._id)}>Edit</Button></th>
                     </tr>
                   )}) 
                 }

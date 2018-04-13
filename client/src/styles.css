@@ -1,3 +1,20 @@
+.app-container {
+    background: url('./images/287.jpg')  no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+	background-size: cover;
+	font-family: 'Imprima', sans-serif;
+}
+
+MainContainer {
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	width: null; 
+	height: null;
+  }
+
 .NavBar a, .NavBar button {
 	margin: 0 5px;
 	cursor: pointer;
@@ -12,4 +29,6 @@
 		display: flex; 
 	}
 }
-
+.nav-brand{
+	font-family: 'Cutive Mono', monospace;
+}

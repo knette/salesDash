@@ -21,7 +21,7 @@ class NavBar extends React.Component {
 			<div className='NavBar'>
 	
 	<Navbar color="light" light expand="md">
-          <NavbarBrand>salesDash</NavbarBrand>
+          <NavbarBrand className="nav-brand" href="/sales">salesDash</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

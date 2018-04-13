@@ -34,15 +34,15 @@ class NewSale extends React.Component {
                                 <Input type="text" placeholder="Company" name="company" value={company}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="price">Sales Price</Label>
+                                <Label for="price">Sale Price</Label>
                                 <Input type="number" placeholder="Price" name="price" value={price}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="price">Sales Price</Label>
+                                <Label for="price">Commission % for this sale</Label>
+                                <FormText>Format as decimal. Ex: 0.05 for 5% commission</FormText>
                                 <Input type="number" placeholder="Commission " name="commission" value={commission}/>
                             </FormGroup>
                             <FormGroup>
-                                <FormText>Format as decimal. Ex: 0.05 for 5% commission</FormText>
                                 <Label for="invoiceDate">Invoice Date</Label>
                                 <Input type="date" name="invoiceDate" id="exampleDate" placeholder="date" value={invoiceDate} />
                             </FormGroup>
