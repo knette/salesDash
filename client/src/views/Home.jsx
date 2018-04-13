@@ -1,5 +1,6 @@
 import React from 'react'
 import { Jumbotron, Button } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 const Home = (props) => {
   return (
@@ -10,7 +11,12 @@ const Home = (props) => {
         <hr className="my-2" />
         <p>Coming soon: custom commission reporting and API integration with Costco, Walmart, Overstock and more!</p>
         <p className="lead">
-          <Button color="primary">Sign Up</Button>
+		<Link to='/signup'>
+          <Button outline color="primary">Sign Up</Button>
+		</Link>
+		<Link to='/login'>
+          <Button outline color="info">Login</Button>
+		</Link>
         </p>
       </Jumbotron>
     </div>

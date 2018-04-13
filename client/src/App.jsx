@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import httpClient from './httpClient'
 import NavBar from './NavBar'
@@ -27,6 +27,12 @@ class App extends React.Component {
 		return (
 			<div className='App container' id="app-container">
 
+				{/* <Image
+          			style={{flex: 1,
+						width: null,
+						height: null,}}
+         		 	source={{uri: './images/287.jpg'}}
+        		/> */}
 				<NavBar currentUser={currentUser} />
 
 				<Switch>
