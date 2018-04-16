@@ -172,7 +172,7 @@ class Sales extends React.Component {
 				<tfoot>
    					<tr>
 						<td>Totals</td>
-						<td>${salePriceTotal}</td>
+						<td>${salePriceTotal.toFixed(2)}</td>
 						<td>{((commissionTotal/salePriceTotal)*100.).toFixed(2)}%</td>
 						<td>${commissionTotal.toFixed(2)}</td>
 						<td></td>
