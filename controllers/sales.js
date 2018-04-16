@@ -34,7 +34,7 @@ module.exports = {
          sale.price = req.body.price
          sale.commission = req.body.commission
          sale.invoiceDate = req.body.invoiceDate
-         sale.return = req.body.return
+         sale.refund = req.body.refund
          sale.user = req.user._id
          sale.save((err, updatedSale) => {
              if(err) return console.log(err)

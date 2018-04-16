@@ -2,7 +2,7 @@
 
 ### Overview
 
-I made this app for a friend's company who hasn't been reconciling their invoices because it drives them crazy.  
+I made this app for a friend's company who hasn't been reconciling their invoices because it drives them crazy.
 
 ### Technologies
 
@@ -15,9 +15,10 @@ I made this app for a friend's company who hasn't been reconciling their invoice
 
 ### Big Issues 
 - started with a larger model than needed and will need to remove commisssion and refund/return objects from model and code them in. 
+- Only admin users can see sales. 
 
 ### Plannned Features 
-- making the model smaller 
+- making the model smaller and hard coding refund and commission features into app 
 - CSV upload
 - API data pulls from retailers 
 
